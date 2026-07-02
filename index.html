@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book an Orthopaedic Consultation | OrthoNow Bengaluru</title>
+<meta name="description" content="Knee or back pain slowing you down? Book a consultation with an OrthoNow orthopaedic specialist in Bengaluru today.">
+
+<style>
+  /* ---------- Reset & base ---------- */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0f2a3d;
+    --navy-deep: #0a1c29;
+    --teal: #0e7c86;
+    --teal-dark: #0a5f67;
+    --teal-glow: #14a3ad;
+    --bg: #f6f8f9;
+    --card: #ffffff;
+    --text: #1c2b33;
+    --muted: #5b6b73;
+    --success: #1e8e5a;
+    --error: #c94b4b;
+    --radius: 10px;
+    --max-width: 480px;
+    --focus-ring: #2f9bd6;
+  }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Visible focus states for keyboard users — applied globally so no
+     interactive element (button, input, link) is ever focus-invisible. */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  /* ---------- Layout wrapper ---------- */
+  .page {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    min-height: 100vh;
+    background: var(--card);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---------- Header / hero ---------- */
+  /* CSS-only gradient background — no image request, no decode cost,
+     nothing that can 404 or slow down LCP. Two radial glows over a
+     linear base evoke a clinical/scan-light feel without a photo. */
+  header.hero {
+    position: relative;
+    background:
+      radial-gradient(circle at 15% 15%, rgba(20,163,173,0.35) 0%, rgba(20,163,173,0) 45%),
+      radial-gradient(circle at 85% 85%, rgba(20,163,173,0.25) 0%, rgba(20,163,173,0) 50%),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color: #fff;
+    padding: 30px 20px 26px;
+    text-align: center;
+  }
+
+  .logo {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #9fd4d9;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.32;
+    margin-bottom: 10px;
+  }
+
+  h1 .highlight {
+    color: #7fe0e8;
+  }
+
+  .subhead {
+    font-size: 15px;
+    color: #cfe0e5;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  /* ---------- Trust bar ---------- */
+  .trust-bar {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    padding: 14px 16px;
+    background: #eef6f6;
+    border-bottom: 1px solid #dfeaea;
+    font-size: 12.5px;
+    color: var(--teal-dark);
+    font-weight: 600;
+  }
+
+  .trust-bar span { white-space: nowrap; }
+
+  /* ---------- Main content ---------- */
+  main {
+    flex: 1;
+    padding: 24px 20px 32px;
+  }
+
+  /* Form card */
+  .form-card {
+    border: 1px solid #e3e8ea;
+    border-radius: var(--radius);
+    padding: 20px;
+    background: var(--card);
+  }
+
+  .form-card h2 {
+    font-size: 17px;
+    margin-bottom: 4px;
+  }
+
+  .form-card p.note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+
+  .field { margin-bottom: 16px; }
+
+  input[type="text"],
+  input[type="tel"] {
+    width: 100%;
+    font-size: 16px; /* prevents iOS zoom-on-focus */
+    padding: 13px 14px;
+    border: 1.5px solid #cfd8dc;
+    border-radius: 8px;
+    background: #fff;
+    color: var(--text);
+    -webkit-appearance: none;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(14,124,134,0.15);
+  }
+
+  input.invalid { border-color: var(--error); }
+  .error-msg {
+    color: var(--error);
+    font-size: 12.5px;
+    margin-top: 5px;
+    display: none;
+  }
+  .error-msg.show { display: block; }
+
+  /* CTA button */
+  .cta-btn {
+    width: 100%;
+    padding: 16px 18px;
+    background: var(--teal);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 4px;
+    transition: background 0.15s ease;
+  }
+
+  .cta-btn:active { background: var(--teal-dark); }
+
+  @media (hover: hover) {
+    .cta-btn:hover { background: var(--teal-dark); }
+  }
+
+  .microcopy {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
+  /* ---------- Thank-you state ---------- */
+  .thankyou {
+    display: none;
+    text-align: center;
+    padding: 30px 10px;
+  }
+
+  .thankyou.show { display: block; }
+  .form-card.hide { display: none; }
+
+  .thankyou .icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--success);
+    color: #fff;
+    font-size: 28px;
+    line-height: 52px;
+    margin: 0 auto 16px;
+  }
+
+  .thankyou h2 {
+    font-size: 19px;
+    margin-bottom: 8px;
+  }
+
+  .thankyou p {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .thankyou p + p {
+    margin-top: 8px;
+  }
+
+  /* ---------- Credentials section ---------- */
+  .credentials {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #eef1f2;
+  }
+
+  .credentials h3 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .cred-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cred-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--text);
+  }
+
+  .cred-list li::before {
+    content: "✓";
+    color: var(--teal);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 14px 20px 22px;
+    text-align: center;
+    font-size: 11.5px;
+    color: #9aa7ac;
+  }
+
+  /* ---------- Small screens fine-tuning ---------- */
+  @media (max-width: 360px) {
+    h1 { font-size: 22px; }
+    .trust-bar { gap: 12px; font-size: 11.5px; }
+  }
+
+  /* ---------- Reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HERO: headline + subheadline, targeted at working professionals in Bengaluru -->
+  <header class="hero">
+    <div class="logo">OrthoNow · Bengaluru</div>
+    <h1>Knee or back pain from <span class="highlight">long hours at your desk?</span></h1>
+    <p class="subhead">Get a same-week orthopaedic opinion from a specialist near you in Bengaluru — built for working professionals who can't afford downtime.</p>
+  </header>
+
+  <!-- TRUST ELEMENT: quick-scan credibility signals -->
+  <div class="trust-bar">
+    <span>★ 4.8/5 (2,300+ reviews)</span>
+    <span>12 clinics in Bengaluru</span>
+    <span>15+ yrs experience</span>
+  </div>
+
+  <main>
+
+    <!-- FORM CARD -->
+    <section class="form-card" id="formCard">
+      <h2>Book your consultation</h2>
+      <p class="note">Takes 15 seconds. A care coordinator will call you to confirm your slot.</p>
+
+      <form id="consultForm" novalidate>
+        <div class="field">
+          <label for="name">Full name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="e.g. Priya Sharma"
+            autocomplete="name"
+            aria-required="true"
+            aria-describedby="nameError"
+            required>
+          <div class="error-msg" id="nameError" role="alert">Please enter your name.</div>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="10-digit mobile number"
+            autocomplete="tel"
+            inputmode="numeric"
+            maxlength="10"
+            aria-required="true"
+            aria-describedby="phoneError"
+            required>
+          <div class="error-msg" id="phoneError" role="alert">Please enter a valid 10-digit number.</div>
+        </div>
+
+        <!-- Primary CTA — emphasizes urgency (today) over generic "submit" -->
+        <button type="submit" class="cta-btn">Book My Consultation Today</button>
+        <p class="microcopy">No payment now. A clinic coordinator will confirm your appointment.</p>
+      </form>
+    </section>
+
+    <!-- THANK-YOU STATE (hidden until submit). aria-live announces it to
+         screen reader users the moment it appears, since it replaces the
+         form without a page reload. -->
+    <section class="thankyou" id="thankYou" aria-live="polite" role="status">
+      <div class="icon" aria-hidden="true">✓</div>
+      <h2>You're booked in</h2>
+      <p>A care coordinator will call you within 30 minutes (Mon–Sat, 9am–7pm) to confirm your appointment time and nearest Bengaluru clinic.</p>
+      <p>Keep your phone handy — we'll call from a OrthoNow number.</p>
+    </section>
+
+    <!-- CREDENTIALS: supporting trust detail below the fold -->
+    <div class="credentials">
+      <h3>Why patients choose OrthoNow</h3>
+      <ul class="cred-list">
+        <li>Orthopaedic surgeons trained at leading Indian medical institutes</li>
+        <li>Same-week appointments across Bengaluru locations</li>
+        <li>On-site X-ray and diagnostics — no separate lab visits</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer>
+    OrthoNow Orthopaedic Care, Bengaluru
+  </footer>
+
+</div>
+
+<script>
+  // ---------------------------------------------------------------
+  // Form handling: validate, push to GTM dataLayer, show thank-you.
+  // No page reload, no external dependencies, no console errors.
+  // ---------------------------------------------------------------
+  (function () {
+    var form = document.getElementById('consultForm');
+    var formCard = document.getElementById('formCard');
+    var thankYou = document.getElementById('thankYou');
+
+    var nameInput = document.getElementById('name');
+    var phoneInput = document.getElementById('phone');
+    var nameError = document.getElementById('nameError');
+    var phoneError = document.getElementById('phoneError');
+
+    // Restrict phone field to digits only as the user types.
+    phoneInput.addEventListener('input', function () {
+      phoneInput.value = phoneInput.value.replace(/\D/g, '').slice(0, 10);
+    });
+
+    function isValidName(value) {
+      return value.trim().length > 1;
+    }
+
+    function isValidPhone(value) {
+      return /^[6-9]\d{9}$/.test(value.trim()); // mobile number pattern
+    }
+
+    // Keeps aria-invalid in sync with the visual "invalid" state so
+    // screen readers announce the same thing sighted users see.
+    function setFieldState(input, errorEl, valid) {
+      input.classList.toggle('invalid', !valid);
+      input.setAttribute('aria-invalid', String(!valid));
+      errorEl.classList.toggle('show', !valid);
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); // stop native page reload
+
+      var nameVal = nameInput.value;
+      var phoneVal = phoneInput.value;
+
+      var nameValid = isValidName(nameVal);
+      var phoneValid = isValidPhone(phoneVal);
+
+      setFieldState(nameInput, nameError, nameValid);
+      setFieldState(phoneInput, phoneError, phoneValid);
+
+      if (!nameValid || !phoneValid) {
+        return; // block submit until fields are valid
+      }
+
+      // ---- GTM dataLayer push (fires only on successful submit) ----
+      // Parameters map to this specific campaign so GA4/GTM can segment
+      // this lead source and location distinctly from other pages.
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'consultation_form_submitted',
+        form_name: 'orthonow_consultation_form',
+        lead_source: 'bengaluru_knee_back_pain_landing_page',
+        campaign_name: 'expert_orthopaedic_opinion',
+        clinic_location: 'bengaluru',
+        page_path: window.location.pathname
+      });
+
+      // ---- Swap form for thank-you state, no reload ----
+      formCard.classList.add('hide');
+      thankYou.classList.add('show');
+
+      thankYou.setAttribute('tabindex', '-1');
+      thankYou.focus();
+    });
+  })();
+</script>
+
+</body>
+</html>
